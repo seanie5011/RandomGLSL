@@ -4,7 +4,7 @@ import moderngl_window as mglw
 # App window
 # inherit from a mglw class
 class App(mglw.WindowConfig):
-	# set resolution
+	# set resolution, in 16:9 format
 	window_size = 1600, 900
 	# define folder with shader attributes
 	resource_dir = 'programs'
