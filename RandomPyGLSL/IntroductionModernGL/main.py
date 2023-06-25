@@ -24,11 +24,27 @@ class App(mglw.WindowConfig):
 			fragment_shader='fragment_shader.glsl',
 		)
 
+		# assign resolution to the uniform values
+		self.set_uniform('resolution', self.window_size)
+
+	# set the uniform values
+	def set_uniform(self, u_name, u_value):
+		# assign value to that uniform key
+		try:
+			self.prog[u_name] = u_value
+		# if the key does not exist
+		except KeyError:
+			print(f'uniform: {u_name} - not used in shader')
+
 	# automatically called each frame
 	def render(self, time, frame_time):
 		# clear frame buffer
 		self.ctx.clear()
-		# render new one
+
+		# assign time to the uniform values
+		self.set_uniform('time', time)
+
+		# render new frame
 		self.quad.render(self.prog)
 
 # main running
